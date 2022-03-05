@@ -4,8 +4,8 @@
     "module": "commonjs",
     "sourceMap": true,
     "rootDir": "src/",
-    "outDir": "./",
+    "outDir": "./dist",
     "esModuleInterop": true
   },
-  "exclude": ["./tests"]
+  "exclude": ["./tests", "./dist"]
 }
