@@ -2,7 +2,7 @@
 
 # @theinternetfolks/kubernetes
 
-[![GitHub license](https://img.shields.io/github/license/theinternetfolks/kubernetes.svg)](https://github.com/theinternetfolks/context/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/theinternetfolks/kubernetes.svg)](https://github.com/theinternetfolks/context/kubernetes/master/LICENSE)
 [![Maintainer](https://img.shields.io/badge/maintainer-monkfromearth-green)](https://github.com/monkfromearth)
 
 Library to help you interact with Docker or Kubernetes cluster in Node-based environments.
