@@ -1,0 +1,3 @@
+FROM alpin:latest
+
+ENTRYPOINT [ "echo", '"Hello World"' ]
