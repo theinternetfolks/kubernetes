@@ -1,0 +1,1 @@
+{"version":3,"file":"client.d.ts","sourceRoot":"","sources":["../../src/kubernetes/client.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,GAAG,MAAM,yBAAyB,CAAC;AAE/C,oBAAY,yBAAyB,GACjC,QAAQ,GACR,MAAM,GACN,SAAS,GACT,SAAS,GACT,SAAS,CAAC;AAEd,qBAAa,mBAAmB;IACvB,EAAE,EAAE,GAAG,CAAC,UAAU,CAAwB;IAEjD,UAAU;IAIV;;;;;OAKG;gBAED,MAAM,GAAE,GAAU,EAClB,MAAM,GAAE,yBAAqC;CAkBhD"}
