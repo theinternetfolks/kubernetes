@@ -1,5 +1,5 @@
 import * as k8s from "@kubernetes/client-node";
-import { V1Deployment, V1DeploymentList, V1Ingress, V1IngressList, V1Pod, V1PodList, V1StatefulSet, V1StatefulSetList } from "@kubernetes/client-node";
+import { V1Deployment, V1DeploymentList, V1Ingress, V1IngressList, V1Pod, V1PodList, V1StatefulSet, V1StatefulSetList, V1Status } from "@kubernetes/client-node";
 declare type KubernetesBootstrapMethod = "string" | "file" | "options" | "default" | "cluster";
 export declare class Kubernetes {
     static kc: k8s.KubeConfig;
@@ -22,6 +22,11 @@ export declare class Kubernetes {
      */
     static getPod(name: string, namespace?: string): Promise<V1Pod>;
     /**
+     * remove pod in the cluster
+     *
+     */
+    static removePod(name: string, namespace?: string, gracePeriodSeconds?: number): Promise<V1Pod>;
+    /**
      * lists all the available deployments in the cluster
      *
      */
@@ -32,25 +37,40 @@ export declare class Kubernetes {
      */
     static getDeployment(name: string, namespace?: string): Promise<V1Deployment>;
     /**
-     * lists all the available deployments in the cluster
+     * remove deployments in the cluster
+     *
+     */
+    static removeDeployment(name: string, namespace?: string): Promise<V1Status>;
+    /**
+     * lists all the available stateful sets in the cluster
      *
      */
     static getAllStatefulSet(namespace?: string): Promise<V1StatefulSetList>;
     /**
-     * get details of the available deployments in the cluster
+     * get details of the available stateful sets in the cluster
      *
      */
     static getStatefulSet(name: string, namespace?: string): Promise<V1StatefulSet>;
     /**
-     * lists all the available deployments in the cluster
+     * remove stateful sets in the cluster
+     *
+     */
+    static removeStatefulSet(name: string, namespace?: string): Promise<V1Status>;
+    /**
+     * lists all the available ingress in the cluster
      *
      */
     static getAllIngress(namespace?: string): Promise<V1IngressList>;
     /**
-     * get details of the available deployments in the cluster
+     * get details of the available ingress in the cluster
      *
      */
     static getIngress(name: string, namespace?: string): Promise<V1Ingress>;
+    /**
+     * remove ingress in the cluster
+     *
+     */
+    static removeIngress(name: string, namespace?: string): Promise<V1Status>;
     /**
      * Replicate the functionality of `kubectl apply`.  That is, create the resources defined in the `specString` if they do
      * not exist, patch them if they do exist.

@@ -131,6 +131,25 @@ var Kubernetes = /** @class */ (function () {
         });
     };
     /**
+     * remove pod in the cluster
+     *
+     */
+    Kubernetes.removePod = function (name, namespace, gracePeriodSeconds) {
+        if (namespace === void 0) { namespace = "default"; }
+        if (gracePeriodSeconds === void 0) { gracePeriodSeconds = 0; }
+        return __awaiter(this, void 0, void 0, function () {
+            var api;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        api = Kubernetes.kc.makeApiClient(k8s.CoreV1Api);
+                        return [4 /*yield*/, api.deleteNamespacedPod(name, namespace, null, null, gracePeriodSeconds)];
+                    case 1: return [2 /*return*/, (_a.sent()).body];
+                }
+            });
+        });
+    };
+    /**
      * lists all the available deployments in the cluster
      *
      */
@@ -167,7 +186,25 @@ var Kubernetes = /** @class */ (function () {
         });
     };
     /**
-     * lists all the available deployments in the cluster
+     * remove deployments in the cluster
+     *
+     */
+    Kubernetes.removeDeployment = function (name, namespace) {
+        if (namespace === void 0) { namespace = "default"; }
+        return __awaiter(this, void 0, void 0, function () {
+            var api;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        api = Kubernetes.kc.makeApiClient(k8s.AppsV1Api);
+                        return [4 /*yield*/, api.deleteNamespacedDeployment(name, namespace)];
+                    case 1: return [2 /*return*/, (_a.sent()).body];
+                }
+            });
+        });
+    };
+    /**
+     * lists all the available stateful sets in the cluster
      *
      */
     Kubernetes.getAllStatefulSet = function (namespace) {
@@ -185,7 +222,7 @@ var Kubernetes = /** @class */ (function () {
         });
     };
     /**
-     * get details of the available deployments in the cluster
+     * get details of the available stateful sets in the cluster
      *
      */
     Kubernetes.getStatefulSet = function (name, namespace) {
@@ -203,7 +240,25 @@ var Kubernetes = /** @class */ (function () {
         });
     };
     /**
-     * lists all the available deployments in the cluster
+     * remove stateful sets in the cluster
+     *
+     */
+    Kubernetes.removeStatefulSet = function (name, namespace) {
+        if (namespace === void 0) { namespace = "default"; }
+        return __awaiter(this, void 0, void 0, function () {
+            var api;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        api = Kubernetes.kc.makeApiClient(k8s.AppsV1Api);
+                        return [4 /*yield*/, api.deleteNamespacedStatefulSet(name, namespace)];
+                    case 1: return [2 /*return*/, (_a.sent()).body];
+                }
+            });
+        });
+    };
+    /**
+     * lists all the available ingress in the cluster
      *
      */
     Kubernetes.getAllIngress = function (namespace) {
@@ -221,7 +276,7 @@ var Kubernetes = /** @class */ (function () {
         });
     };
     /**
-     * get details of the available deployments in the cluster
+     * get details of the available ingress in the cluster
      *
      */
     Kubernetes.getIngress = function (name, namespace) {
@@ -233,6 +288,24 @@ var Kubernetes = /** @class */ (function () {
                     case 0:
                         api = Kubernetes.kc.makeApiClient(k8s.NetworkingV1Api);
                         return [4 /*yield*/, api.readNamespacedIngress(name, namespace)];
+                    case 1: return [2 /*return*/, (_a.sent()).body];
+                }
+            });
+        });
+    };
+    /**
+     * remove ingress in the cluster
+     *
+     */
+    Kubernetes.removeIngress = function (name, namespace) {
+        if (namespace === void 0) { namespace = "default"; }
+        return __awaiter(this, void 0, void 0, function () {
+            var api;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        api = Kubernetes.kc.makeApiClient(k8s.NetworkingV1Api);
+                        return [4 /*yield*/, api.deleteNamespacedIngress(name, namespace)];
                     case 1: return [2 /*return*/, (_a.sent()).body];
                 }
             });

@@ -8,6 +8,7 @@ import {
   V1PodList,
   V1StatefulSet,
   V1StatefulSetList,
+  V1Status,
 } from "@kubernetes/client-node";
 import * as yaml from "js-yaml";
 
@@ -75,6 +76,27 @@ export class Kubernetes {
   }
 
   /**
+   * remove pod in the cluster
+   *
+   */
+  static async removePod(
+    name: string,
+    namespace: string = "default",
+    gracePeriodSeconds: number = 0
+  ): Promise<V1Pod> {
+    const api = Kubernetes.kc.makeApiClient(k8s.CoreV1Api);
+    return (
+      await api.deleteNamespacedPod(
+        name,
+        namespace,
+        null,
+        null,
+        gracePeriodSeconds
+      )
+    ).body;
+  }
+
+  /**
    * lists all the available deployments in the cluster
    *
    */
@@ -98,7 +120,19 @@ export class Kubernetes {
   }
 
   /**
-   * lists all the available deployments in the cluster
+   * remove deployments in the cluster
+   *
+   */
+  static async removeDeployment(
+    name: string,
+    namespace: string = "default"
+  ): Promise<V1Status> {
+    const api = Kubernetes.kc.makeApiClient(k8s.AppsV1Api);
+    return (await api.deleteNamespacedDeployment(name, namespace)).body;
+  }
+
+  /**
+   * lists all the available stateful sets in the cluster
    *
    */
   static async getAllStatefulSet(
@@ -109,7 +143,7 @@ export class Kubernetes {
   }
 
   /**
-   * get details of the available deployments in the cluster
+   * get details of the available stateful sets in the cluster
    *
    */
   static async getStatefulSet(
@@ -121,7 +155,19 @@ export class Kubernetes {
   }
 
   /**
-   * lists all the available deployments in the cluster
+   * remove stateful sets in the cluster
+   *
+   */
+  static async removeStatefulSet(
+    name: string,
+    namespace: string = "default"
+  ): Promise<V1Status> {
+    const api = Kubernetes.kc.makeApiClient(k8s.AppsV1Api);
+    return (await api.deleteNamespacedStatefulSet(name, namespace)).body;
+  }
+
+  /**
+   * lists all the available ingress in the cluster
    *
    */
   static async getAllIngress(
@@ -132,7 +178,7 @@ export class Kubernetes {
   }
 
   /**
-   * get details of the available deployments in the cluster
+   * get details of the available ingress in the cluster
    *
    */
   static async getIngress(
@@ -141,6 +187,18 @@ export class Kubernetes {
   ): Promise<V1Ingress> {
     const api = Kubernetes.kc.makeApiClient(k8s.NetworkingV1Api);
     return (await api.readNamespacedIngress(name, namespace)).body;
+  }
+
+  /**
+   * remove ingress in the cluster
+   *
+   */
+  static async removeIngress(
+    name: string,
+    namespace: string = "default"
+  ): Promise<V1Status> {
+    const api = Kubernetes.kc.makeApiClient(k8s.NetworkingV1Api);
+    return (await api.deleteNamespacedIngress(name, namespace)).body;
   }
 
   /**
