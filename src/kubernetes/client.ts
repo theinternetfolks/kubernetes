@@ -10,7 +10,7 @@ export type KubernetesBootstrapMethod =
 export class TIFKubernetesClient {
   public kc: k8s.KubeConfig = new k8s.KubeConfig();
 
-  disconnect() {
+  disconnect(): void {
     this.kc = new k8s.KubeConfig();
   }
 
