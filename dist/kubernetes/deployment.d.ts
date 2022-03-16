@@ -26,6 +26,6 @@ export declare class Deployment {
      * @param specString File system path to a YAML Kubernetes spec.
      * @return Array of resources created
      */
-    apply(specString: string): Promise<k8s.KubernetesObject[]>;
+    apply(specString: string | k8s.KubernetesObject[]): Promise<k8s.KubernetesObject[]>;
 }
 //# sourceMappingURL=deployment.d.ts.map

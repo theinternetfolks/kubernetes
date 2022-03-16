@@ -131,7 +131,7 @@ var Deployment = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         client = k8s.KubernetesObjectApi.makeApiClient(this.client.kc);
-                        specs = yaml.loadAll(specString);
+                        specs = (typeof specString === "string" ? yaml.load(specString) : specString);
                         validSpecs = specs.filter(function (s) { return s && s.kind && s.metadata; });
                         created = [];
                         _i = 0, validSpecs_1 = validSpecs;

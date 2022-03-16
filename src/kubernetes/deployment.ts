@@ -49,11 +49,13 @@ export class Deployment {
    * @param specString File system path to a YAML Kubernetes spec.
    * @return Array of resources created
    */
-  async apply(specString: string): Promise<k8s.KubernetesObject[]> {
+  async apply(
+    specString: string | k8s.KubernetesObject[]
+  ): Promise<k8s.KubernetesObject[]> {
     const client = k8s.KubernetesObjectApi.makeApiClient(this.client.kc);
 
-    const specs: k8s.KubernetesObject[] = yaml.loadAll(
-      specString
+    const specs = (
+      typeof specString === "string" ? yaml.load(specString) : specString
     ) as k8s.KubernetesObject[];
     const validSpecs = specs.filter((s) => s && s.kind && s.metadata);
     const created: k8s.KubernetesObject[] = [];
