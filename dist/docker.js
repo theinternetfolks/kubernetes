@@ -161,8 +161,8 @@ var Docker = /** @class */ (function () {
                                         if (err) {
                                             reject(err);
                                         }
-                                        Docker.instance.modem.followProgress(s, function (err, res) {
-                                            return err ? reject(err) : resolve(res);
+                                        Docker.instance.modem.followProgress(s, function (dockerModemError, res) {
+                                            return dockerModemError ? reject(dockerModemError) : resolve(res);
                                         });
                                         return [2 /*return*/];
                                     });
@@ -218,8 +218,8 @@ var Docker = /** @class */ (function () {
                                         if (err) {
                                             reject(err);
                                         }
-                                        Docker.instance.modem.followProgress(s, function (err, res) {
-                                            return err ? reject(err) : resolve(res);
+                                        Docker.instance.modem.followProgress(s, function (dockerModemError, res) {
+                                            return dockerModemError ? reject(dockerModemError) : resolve(res);
                                         });
                                         return [2 /*return*/];
                                     });

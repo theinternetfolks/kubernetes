@@ -129,7 +129,7 @@ export interface BuildOptions {
 }
 
 export interface PullOptions {
-  authconfig?: AuthConfig | undefined;
+  authconfig?: AuthConfig;
 }
 
 export interface PullResponse {
@@ -247,8 +247,10 @@ export class Docker {
             if (err) {
               reject(err);
             }
-            Docker.instance.modem.followProgress(s as any, (err, res) =>
-              err ? reject(err) : resolve(res)
+            Docker.instance.modem.followProgress(
+              s as any,
+              (dockerModemError, res) =>
+                dockerModemError ? reject(dockerModemError) : resolve(res)
             );
           });
         }
@@ -294,8 +296,8 @@ export class Docker {
             if (err) {
               reject(err);
             }
-            Docker.instance.modem.followProgress(s as any, (err, res) =>
-              err ? reject(err) : resolve(res)
+            Docker.instance.modem.followProgress(s, (dockerModemError, res) =>
+              dockerModemError ? reject(dockerModemError) : resolve(res)
             );
           });
         }

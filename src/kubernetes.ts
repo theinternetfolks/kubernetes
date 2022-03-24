@@ -6,12 +6,16 @@ import { Deployment } from "./kubernetes/deployment";
 import { Ingress } from "./kubernetes/ingress";
 import { Pod } from "./kubernetes/pod";
 import { StatefulSet } from "./kubernetes/stateful_set";
+import { HorizontalPodAutoscaler } from "./kubernetes/hpa";
+import { Service } from "./kubernetes/service";
 
 const resources = {
   Ingress,
   Deployment,
   Pod,
   StatefulSet,
+  HorizontalPodAutoscaler,
+  Service,
 };
 
 export class Kubernetes {
@@ -21,6 +25,8 @@ export class Kubernetes {
   Deployment: Deployment;
   Pod: Pod;
   StatefulSet: StatefulSet;
+  HorizontalPodAutoscaler: HorizontalPodAutoscaler;
+  Service: Service;
 
   constructor(
     config: any = null,

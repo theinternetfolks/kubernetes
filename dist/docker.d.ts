@@ -135,7 +135,7 @@ export interface BuildOptions {
     dockerfile?: string;
 }
 export interface PullOptions {
-    authconfig?: AuthConfig | undefined;
+    authconfig?: AuthConfig;
 }
 export interface PullResponse {
     status?: string;

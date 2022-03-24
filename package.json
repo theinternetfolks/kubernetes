@@ -1,6 +1,6 @@
 {
   "name": "@theinternetfolks/kubernetes",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Library to help you interact with Docker or Kubernetes cluster in Node-based environments.",
   "main": "dist/index.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "compile": "tsc",
     "build:map": "tsc -d --declarationDir ./dist --declarationMap --emitDeclarationOnly",
     "test": "mocha --ignore 'node_modules/**/*' -r ts-node/register --timeout 60000 --recursive --exit tests/*.ts",
-    "test-coverage": "c8 yarn test && c8 report -r html"
+    "test-coverage": "c8 yarn test && c8 report -r html",
+    "sonar": "sonar-scanner -Dsonar.projectKey=kubernetes -Dsonar.sources=. -Dsonar.host.url=$SONAR_REMOTE_HOST -Dsonar.login=$SONAR_TOKEN -Dsonar.exclusions=coverage/**,dist/**"
   },
   "author": "Sameer Khan <sameer.khan@theinternetfolks.com>",
   "organization": "The Internet Folks",
